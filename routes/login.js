@@ -45,6 +45,7 @@ router.post("/", async (req, res, next) => {
       console.log("entrou no else");
       // Altera o status HTTP para indicar que ocorreu um erro
       res.status(401).send('Credenciais inválidas');
+      //Aqui seria bom apenas ser uum alerta na tela e um envio de codigo para um json, pra não ficar saindo da tela quando dá erro.
       // Não chama next() se houver um erro
     }
   } catch (error) {
