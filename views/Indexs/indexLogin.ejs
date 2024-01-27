@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loja Virtual</title>
+    <%- include('../bootstrap') -%>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      #product-list-header {
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 200px; /* Ajuste a altura conforme necessário */
+      }
+
+      #login-form {
+        text-align: center;
+      }
+
+      #login-form form {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      #login-form input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+
+      #login-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      #signup-link {
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="col-md-10">
+      <div class="container product-list">
+        <div class="product-list-header" id="product-list-header">
+          <h1>Bem-vindos à Loja Virtual!</h1>
+          <br><br>
+          <h5>Faça o login abaixo</h5>
+        </div>
+        <div id="login-form">
+          <form action="/login" method="post">
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+              <label for="password">Senha:</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+              <button type="submit">Entrar</button>
+            </div>
+            <br><br>
+            <a href="/users/add" id="signup-link">Clique aqui para se cadastrar</a>
+          </form>
+        </div>
+      </div>
+      <script>
+        function redirectToProducts() {
+          window.location.href = '/indexLogado/';
+        }
+      </script>
+    </section>
+  </body>
+</html>

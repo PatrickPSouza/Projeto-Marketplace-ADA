@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loja Virtual</title>
+    <%- include('../bootstrap') -%>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('../menu') -%>
+    <section class="col-md-10">
+      <div class="container product-list">
+        <div class="product-list-header">
+          <h1>Lista de Usuários</h1>
+          <div>
+            <a class="btn btn-primary" href="/users/add">Cadastrar Usuário</a>
+          </div>
+        </div>
+        <div class="table">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <% users.forEach(function(users) { %>
+                <tr>
+                  <td><%= users.name%></td>
+                  <td><%=users.email%></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+          
+          </li>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

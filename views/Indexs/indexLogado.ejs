@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        font-family: Arial, sans-serif;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .product-list-header h1 {
+        height: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        white-space: pre-line;
+      }
+
+      .product-list-header h4 {
+        text-align: center;
+      }
+
+      .texo-two {
+        padding-left: 100px;
+        margin-bottom: 20px;
+        white-space: pre-line;
+    
+      }
+    </style>
+    <title>Loja Virtual</title>
+    <%- include('../bootstrap') -%>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('../menu') -%>
+    <section class="col-md-10">
+      <div class="container product-list">
+        <div class="product-list-header">
+          <h1>Login realizado com sucesso, Fulano!</h1> 
+          <div>
+            <a class="btn btn-primary" href="/products/add">Cadastrar Produto</a>
+          </div>
+        </div>
+        <div class="texo-two">
+        
+            <h5> Por favor, escolha uma das opções do menu</h5>
+        </div>
+      </div>
+     
+    </section>
+    
+    <script>
+      function showAlert() {
+        alert('Produto cadastrado com sucesso!');
+      }
+    </script>
+  </body>
+</html>

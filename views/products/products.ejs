@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loja Virtual</title>
+    <%- include('../bootstrap') -%>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('../menu') -%>
+    <section class="col-md-10">
+      <div class="container product-list">
+        <div class="product-list-header">
+          <h1>Lista de Produtos</h1>
+          <div>
+            <a class="btn btn-primary" href="/products/add">Cadastrar Produto</a>
+          </div>
+        </div>
+        <div class="product-filters">
+          <form method="GET" action="/products" class="form-filter">
+            <div class="form-group filter-item">
+              <label>Preço:</label>
+              <select name="order" class="form-control">
+                <option <%= order === 'priceincrease' ? 'selected' : '' %> value="priceincrease">Menor Preço</option>
+                <option <%= order === 'pricedecrease' ? 'selected' : '' %> value="pricedecrease">Maior Preço</option>
+              </select>
+            </div>
+            <div class="form-group filter-item">
+              <label>Categoria:</label>
+              <select name="category" class="form-control">
+                <option value="">Categorias</option>
+                <option
+                  value="hardware"
+                  <%= category === 'hardware' ? 'selected' : '' %>
+                >Hardware</option>
+                <option
+                  value="redes"
+                  <%= category === 'redes' ? 'selected' : '' %>
+                >Redes</option>
+                <option
+                  value="perifericos"
+                  <%= category === 'perifericos' ? 'selected' : '' %>
+                >Periféricos</option>
+              </select>
+            </div>
+            <div class="form-group filter-item">
+              <label>Preço mínimo:</label>
+              <input class="form-control" type="number" name="minPrice" value="<%= minPrice %>" />
+            </div>
+            <div class="form-group filter-item">
+              <label>Preço máximo:</label>
+              <input class="form-control" type="number" name="maxPrice" value="<%= maxPrice %>" />
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" id="filterBtn">
+                Filtrar
+              </button>
+            </div>
+          </form>
+        </div>
+        <ul>
+          <% products.forEach(function(product) { %>
+          <li>
+            <img src="<%= product.linkimage %>" />
+            <h3><%= product.name %></h3>
+            <div>
+              <label>Preço: R$<%= product.price %></label>
+              <label>Marca: <%= product.brand %></label>
+              <label>Modelo: <%= product.model %></label>
+              <label>Categoria: <%= product.category %></label>
+              <label>Descrição: <%= product.description %></label>
+              <button class="btn btn-default" type="button" onclick="showAlert()">Ver mais</button>
+            </div>
+            <script>
+              function showAlert(){
+                alert('Produto cadastrado com sucesso!')
+              }
+            </script>
+          </li>
+        <% }); %>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>
