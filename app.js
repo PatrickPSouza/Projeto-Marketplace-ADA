@@ -17,7 +17,7 @@ app.use(session({
   secret: '1234', 
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 30000 } 
+  cookie: { secure: false, maxAge: 100000 } 
 }));
 
 var loginRouter = require("./routes/login");
@@ -42,10 +42,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-
 app.use("/login", loginRouter);
+
 app.use("/products", productsRouter, authMiddleware);
-app.use("/users", usersRouter, authMiddleware);  
+app.use("/users", usersRouter, authMiddleware );  
 
 
 

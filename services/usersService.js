@@ -15,13 +15,14 @@ db.run(`
 `);
 
 async function addUsers(users) {
-  const { name, email, password } =
-  users;
+
+  // Realiza a inserção
   return new Promise((resolve, reject) => {
+    const { name, email, password } = users;
     db.run(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, password],
-      (err) => {
+      function (err) {
         if (err) {
           reject(err);
         } else {
@@ -32,6 +33,20 @@ async function addUsers(users) {
   });
 }
 
+async function getLastId() {
+  return new Promise((resolve, reject) => {
+    // Consulta para obter o último ID inserido
+    db.get("SELECT MAX(id) AS lastId FROM users", (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        const lastInsertedId = row.lastId;
+        console.log(`Último ID inserido: ${lastInsertedId}`);
+        resolve(lastInsertedId);
+      }
+    });
+  });
+}
 
 async function getUsers(){
   let query = 'SELECT * FROM users WHERE 1=1';
@@ -47,8 +62,18 @@ async function getUsers(){
   });
 }
 
-
+async function getUserIdByEmail(email) {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT id FROM users WHERE email = ?", [email], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row ? row.id : null);
+      }
+    });
+  });
+}
 
 module.exports = {
-  addUsers, getUsers,
+  addUsers, getUsers,getUserIdByEmail, getLastId
 };

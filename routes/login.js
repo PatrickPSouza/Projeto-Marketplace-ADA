@@ -6,15 +6,7 @@ const sqlite3 = require("sqlite3");
 const path = require("path");
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.use(cookieParser());
-router.use(
-  session({
-    secret: "1234",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, maxAge: 30000 },
-  })
-);
+
 
 router.post("/", async (req, res, next) => {
   const { email, password } = req.body;
@@ -33,6 +25,7 @@ router.post("/", async (req, res, next) => {
     if (user && user.email === email && user.password === password) {
       // Armazenar informações em cookies
       res.cookie("user", user);
+      res.cookie('email', email);
 
       req.session.sucesso = user.id;
 

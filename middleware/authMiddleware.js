@@ -3,6 +3,7 @@ let logado = false;
 const authMiddleware = (req, res, next) => {
   console.log("entrou no middleware");
   // Verifica se o usuário está autenticado
+
   if (!req.session || !req.session.sucesso) {
     console.log(
       "Usuário não autenticado. Redirecionando para a página inicial"
