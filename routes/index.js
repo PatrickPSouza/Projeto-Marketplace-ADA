@@ -6,8 +6,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/indexLogado", function (req, res) {
-  res.render("indexs/indexLogado");
+  res.render("indexs/indexLogado", { user: req.cookies.user });
 });
-
 
 module.exports = router;
