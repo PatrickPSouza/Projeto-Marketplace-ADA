@@ -5,12 +5,20 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require('express-session');
+const authMiddleware = require('./middleware/authMiddleware');
 
 const sqlite3 = require('sqlite3');
 
 app.use(express.json());
 
-
+// Configuração de sessão e cookies
+app.use(cookieParser());
+app.use(session({
+  secret: '1234', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 30000 } 
+}));
 
 var loginRouter = require("./routes/login");
 var indexRouter = require("./routes/index");
@@ -32,12 +40,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
- 
-
 app.use("/", indexRouter);
+
+
 app.use("/login", loginRouter);
-app.use("/products", productsRouter);
-app.use("/users", usersRouter);
+app.use("/products", productsRouter, authMiddleware);
+app.use("/users", usersRouter, authMiddleware);  
 
 
 

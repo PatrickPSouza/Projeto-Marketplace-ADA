@@ -2,6 +2,14 @@ var express = require("express");
 var productService = require("../services/productService");
 var router = express.Router();
 const Product = require("../models/ProductModel");
+const authMiddleware = require('../middleware/authMiddleware');
+
+
+// Configuração do middleware de autenticação para ser usado em todas as rotas deste roteador
+router.use(authMiddleware);
+
+
+
 
 router.get("/", async function (req, res, next) {
 
