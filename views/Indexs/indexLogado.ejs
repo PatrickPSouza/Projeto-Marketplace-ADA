@@ -23,7 +23,6 @@
         padding-left: 100px;
         margin-bottom: 20px;
         white-space: pre-line;
-    
       }
     </style>
     <title>Loja Virtual</title>
@@ -35,22 +34,22 @@
     <section class="col-md-10">
       <div class="container product-list">
         <div class="product-list-header">
-          <h1>Login realizado com sucesso, Fulano!</h1> 
+          <h1>Login realizado com sucesso, <%= user.name %>!</h1>
           <div>
-            <a class="btn btn-primary" href="/products/add">Cadastrar Produto</a>
+            <a class="btn btn-primary" href="/products/add"
+              >Cadastrar Produto</a
+            >
           </div>
         </div>
         <div class="texo-two">
-        
-            <h5> Por favor, escolha uma das opções do menu</h5>
+          <h5>Por favor, escolha uma das opções do menu</h5>
         </div>
       </div>
-     
     </section>
-    
+
     <script>
       function showAlert() {
-        alert('Produto cadastrado com sucesso!');
+        alert("Produto cadastrado com sucesso!");
       }
     </script>
   </body>
