@@ -1,3 +1,5 @@
+
+
 class Product {
   constructor(name, price, brand, model, category, description, linkimage) {
     this.name = name;

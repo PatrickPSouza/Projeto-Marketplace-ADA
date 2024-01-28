@@ -10,7 +10,7 @@ router.use(authMiddleware);
 
 
 
-
+//gera a lista de todos os produtos
 router.get("/", async function (req, res, next) {
 
   let productList = null;
@@ -34,10 +34,35 @@ router.get("/", async function (req, res, next) {
   });
 });
 
+//gera a lista dos produtos do usuário logado
+router.get("/userProducts", async function (req, res, next) {
+
+  let productList = null;
+
+  // Construa um objeto de filtro com base nos parâmetros da consulta
+  const filter = {
+    category: req.query.category,
+    minPrice: req.query.minPrice,
+    maxPrice: req.query.maxPrice,
+    order: req.query.order, // Adiciona o parâmetro order
+  };
+
+  productList = await productService.getUserProducts(filter, req);
+
+  res.render("products/userProducts", {
+    products: productList,
+    order: req.query.order,
+    category: req.query.category,
+    minPrice: req.query.minPrice,
+    maxPrice: req.query.maxPrice,
+  });
+});
+
 router.get("/add", async function (req, res, next) {
   res.render("products/productsCreate");
 });
 
+//chama a função pra adicionar produtos no banco de dados
 router.post("/add", async function (req, res, next) {
   const { name, price, brand, model, category, description, linkimage } =
     req.body;
@@ -52,7 +77,7 @@ router.post("/add", async function (req, res, next) {
     linkimage
   );
 
-  await productService.addProduct(product);
+  await productService.addProduct(product, req);
 
   res.redirect("/products");
 });

@@ -1,4 +1,6 @@
 const express = require("express");
+
+const variavelLogin = express();
 const router = express.Router();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
@@ -28,25 +30,23 @@ router.post("/", async (req, res, next) => {
       res.cookie('email', email);
 
       req.session.sucesso = user.id;
-
-      // Chama o próximo middleware (authMiddleware) aqui fora do bloco try-catch-finally
+      
+      // variável global recebe o id do usuário logado
+      req.app.locals.idUserLogado = user.id;
+      
+      console.log('o valor de user id é :' + user.id)
+      console.log('o valor da variavel global é:' + req.app.locals.idUserLogado)
       res.redirect("/indexLogado");
     } else {
-      console.log("entrou no else");
-      // Altera o status HTTP para indicar que ocorreu um erro
       res.status(401).send("Credenciais inválidas");
-      // Não chama next() se houver um erro
     }
   } catch (error) {
     console.error(error);
-    // Altera o status HTTP para indicar um erro interno
     res.status(500).send("Erro interno no servidor");
-    // Não chama next() se houver um erro
   } finally {
     db.close();
   }
 });
 
-// Remova esta linha, pois o next() já está sendo chamado dentro do bloco try
 
 module.exports = router;

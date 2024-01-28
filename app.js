@@ -32,7 +32,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 
-
+//criação da variável global que receber o id do usuário logado
+app.locals.idUserLogado = null;
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
