@@ -69,7 +69,7 @@
               <label>Categoria: <%= product.category %></label>
               <label>Descrição: <%= product.description %></label>
               <div class="btn-group" role="group">
-                <button class="btn btn-sm btn-default" type="button" onclick="showAlertEditar('Editar')">Editar</button>
+                <a href="/products/<%= product.id %>" class="btn btn-sm btn-default" type="button">Editar</a>  
                 <button class="btn btn-sm btn-danger" type="button" onclick="confirmDelete('<%= product.id %>')">Excluir</button>
 
 
@@ -77,9 +77,8 @@
             </div>
             <script>
 
-              function showAlertEditar(){
-                alert('Não deu prazo de fazer a função de editar :(')
-              }
+             
+        
               function showAlert(){
                 alert('Produto cadastrado com sucesso!')
               }
