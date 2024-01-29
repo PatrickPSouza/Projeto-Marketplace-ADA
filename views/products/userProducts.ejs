@@ -63,17 +63,43 @@
             <img src="<%= product.linkimage %>" />
             <h3><%= product.name %></h3>
             <div>
-              <label>Preço: R$<%= product.price %></label>
+              <label>Preço: R$<%= product.price %>,00</label>
               <label>Marca: <%= product.brand %></label>
               <label>Modelo: <%= product.model %></label>
               <label>Categoria: <%= product.category %></label>
               <label>Descrição: <%= product.description %></label>
-              <button class="btn btn-default" type="button" onclick="showAlert()">Ver mais</button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-default" type="button" onclick="showAlertEditar('Editar')">Editar</button>
+                <button class="btn btn-sm btn-danger" type="button" onclick="confirmDelete('<%= product.id %>')">Excluir</button>
+
+
+              </div>
             </div>
             <script>
+
+              function showAlertEditar(){
+                alert('Não deu prazo de fazer a função de editar :(')
+              }
               function showAlert(){
                 alert('Produto cadastrado com sucesso!')
               }
+
+              async function confirmDelete(productId) {
+    if (confirm("Tem certeza que deseja excluir este produto? <%= products.id %>")) {
+      try {
+        const response = await fetch(`/products/delete/${productId}`, { method: 'POST' });
+        const data = await response.json();
+
+        alert(data.message);
+        // Recarregar a página ou atualizar a lista de produtos conforme necessário
+      } catch (error) {
+        console.error(error);
+        alert('Erro ao excluir o produto');
+      }
+    }
+  }
+              
+
             </script>
           </li>
         <% }); %>

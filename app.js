@@ -17,7 +17,7 @@ app.use(session({
   secret: '1234', 
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 100000 } 
+  cookie: { secure: false, maxAge: 1200000 } 
 }));
 
 var loginRouter = require("./routes/login");

@@ -81,5 +81,19 @@ router.post("/add", async function (req, res, next) {
 
   res.redirect("/products");
 });
+
+
+//função para deletar produto
+router.post('/products/delete/:productId', async (req, res) => {
+  console.log('ENTROU NO POST DE DELETE EM PRODUCTS.JS')
+  const productId = req.params.productId;
+
+  try {
+    const message = await productService.deleteProduct(productId);
+    res.status(200).json({ message });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao excluir o produto' });
+  }
+});
  
 module.exports = router;

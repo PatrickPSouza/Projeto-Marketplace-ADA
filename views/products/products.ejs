@@ -38,7 +38,7 @@
                 >Redes</option>
                 <option
                   value="perifericos"
-                  <%= category === 'perifericos' ? 'selected' : '' %>
+                  <%= category === 'perifricos' ? 'selected' : '' %>
                 >Periféricos</option>
               </select>
             </div>
@@ -63,7 +63,7 @@
             <img src="<%= product.linkimage %>" />
             <h3><%= product.name %></h3>
             <div>
-              <label>Preço: R$<%= product.price %></label>
+              <label>Preço: R$<%= product.price %>,00</label>
               <label>Marca: <%= product.brand %></label>
               <label>Modelo: <%= product.model %></label>
               <label>Categoria: <%= product.category %></label>

@@ -81,7 +81,7 @@ async function addProduct(product, req) {
   CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    price TEXT NOT NULL,
+    price NUMBER NOT NULL,
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
     category TEXT NOT NULL,
@@ -106,6 +106,24 @@ async function addProduct(product, req) {
         }
       }
     );
+  });
+}
+
+//função para deletar produto
+async function deleteProduct(productId) {
+  return new Promise(async (resolve, reject) => {
+    const sql = 'DELETE FROM products WHERE id = ?';
+
+    try {
+      const result = await db.run(sql, [productId]);
+      if (result.changes === 0) {
+        reject('Produto não encontrado');
+      } else {
+        resolve('Produto excluído com sucesso');
+      }
+    } catch (err) {
+      reject('Erro ao excluir o produto');
+    }
   });
 }
 
@@ -142,5 +160,6 @@ module.exports = {
   getProducts,
   addProduct,
   getProductsPriceDecrease,
-  getUserProducts
+  getUserProducts,
+  deleteProduct
 };
