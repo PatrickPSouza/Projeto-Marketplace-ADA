@@ -84,7 +84,7 @@ router.post("/add", async function (req, res, next) {
 
 
 //função para deletar produto
-router.post('/products/delete/:productId', async (req, res) => {
+router.delete('/products/delete/:productId', async (req, res) => {
   console.log('ENTROU NO POST DE DELETE EM PRODUCTS.JS')
   const productId = req.params.productId;
 
