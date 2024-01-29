@@ -76,20 +76,8 @@
               </div>
             </div>
             <script>
-<<<<<<< Updated upstream
-
-             
-        
-              function showAlert(){
-                alert('Produto cadastrado com sucesso!')
-              }
-
-              async function confirmDelete(productId) {
-    if (confirm("Tem certeza que deseja excluir este produto? <%= products.id %>")) {
-=======
 async function confirmDelete(productId) {
     if (confirm("Tem certeza que deseja excluir este produto?")) {
->>>>>>> Stashed changes
       try {
         const response = await fetch(`/products/delete/${productId}`, {
           method: 'DELETE',
