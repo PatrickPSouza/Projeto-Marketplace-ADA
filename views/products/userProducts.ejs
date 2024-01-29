@@ -24,24 +24,7 @@
                 <option <%= order === 'pricedecrease' ? 'selected' : '' %> value="pricedecrease">Maior Preço</option>
               </select>
             </div>
-            <div class="form-group filter-item">
-              <label>Categoria:</label>
-              <select name="category" class="form-control">
-                <option value="">Categorias</option>
-                <option
-                  value="hardware"
-                  <%= category === 'hardware' ? 'selected' : '' %>
-                >Hardware</option>
-                <option
-                  value="redes"
-                  <%= category === 'redes' ? 'selected' : '' %>
-                >Redes</option>
-                <option
-                  value="perifericos"
-                  <%= category === 'perifericos' ? 'selected' : '' %>
-                >Periféricos</option>
-              </select>
-            </div>
+           
             <div class="form-group filter-item">
               <label>Preço mínimo:</label>
               <input class="form-control" type="number" name="minPrice" value="<%= minPrice %>" />
