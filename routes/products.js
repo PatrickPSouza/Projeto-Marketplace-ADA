@@ -2,17 +2,13 @@ var express = require("express");
 var productService = require("../services/productService");
 var router = express.Router();
 const Product = require("../models/ProductModel");
-const authMiddleware = require('../middleware/authMiddleware');
-
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Configuração do middleware de autenticação para ser usado em todas as rotas deste roteador
 router.use(authMiddleware);
 
-
-
 //gera a lista de todos os produtos
 router.get("/", async function (req, res, next) {
-
   let productList = null;
 
   // Construa um objeto de filtro com base nos parâmetros da consulta
@@ -36,7 +32,6 @@ router.get("/", async function (req, res, next) {
 
 //gera a lista dos produtos do usuário logado
 router.get("/userProducts", async function (req, res, next) {
-
   let productList = null;
 
   // Construa um objeto de filtro com base nos parâmetros da consulta
@@ -82,7 +77,6 @@ router.post("/add", async function (req, res, next) {
   res.redirect("/products");
 });
 
-
 //função para deletar produto
 router.delete('/products/delete/:productId', async (req, res) => {
   console.log('ENTROU NO POST DE DELETE EM PRODUCTS.JS')
@@ -92,8 +86,27 @@ router.delete('/products/delete/:productId', async (req, res) => {
     const message = await productService.deleteProduct(productId);
     res.status(200).json({ message });
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao excluir o produto' });
+    res.status(500).json({ message: "Erro ao excluir o produto" });
   }
 });
- 
+
+router.get("/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  const product = await productService.getProductById(productId);
+
+  res.render("products/productEdit", { product });
+});
+
+router.post("/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  const naoSouReqBody = req.body;
+
+  try {
+    await productService.editProduct(productId, naoSouReqBody);
+    res.redirect("/products/userProducts");
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao editar o produto" });
+  }
+});
+
 module.exports = router;

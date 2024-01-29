@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loja Virtual</title>
+    <%- include('../bootstrap') -%>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('../menu') -%>
+    <section class="col-md-10">
+      <div class="container product-create mt-5">
+        <h1 class="text-center">Edição de Produto</h1>
+        <form method="POST" action="/products/<%= product.id %>">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nome</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="exampleInputNome"
+              placeholder="Nome"
+              value="<%= product.name %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Preço</label>
+            <input
+              type="text"
+              name="price"
+              class="form-control"
+              id="exampleInputPreço"
+              placeholder="Preço"
+              value="<%= product.price %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Marca</label>
+            <input
+              type="text"
+              name="brand"
+              class="form-control"
+              id="exampleInputMarca"
+              placeholder="Marca"
+              value="<%= product.brand %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Modelo</label>
+            <input
+              type="text"
+              name="model"
+              class="form-control"
+              id="exampleInputModelo"
+              placeholder="Modelo"
+              value="<%= product.model %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Categoria</label>
+            <input
+              type="text"
+              name="category"
+              class="form-control"
+              id="exampleInputCategoria"
+              placeholder="Categoria"
+              value="<%= product.category %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Descrição</label>
+            <input
+              type="text"
+              name="description"
+              class="form-control"
+              id="exampleInputDescrição"
+              placeholder="Descrição"
+              value="<%= product.description %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Link Imagem</label>
+            <input
+              type="text"
+              name="linkimage"
+              class="form-control"
+              id="exampleInputDescrição"
+              placeholder="Link Imagem"
+              value="<%= product.linkimage %>"
+            />
+          </div>
+          <a href="/products" class="btn btn-danger">Voltar</a>
+          <button type="submit" class="btn btn-success">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
