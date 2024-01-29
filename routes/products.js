@@ -85,13 +85,8 @@ router.post("/add", async function (req, res, next) {
 
 
 //função para deletar produto
-<<<<<<< Updated upstream
-router.post('/products/delete/:productId', async (req, res) => {
-  console.log('ENTROU NO POST DE DELETE EM PRODUCTS.JS')
-=======
 router.delete("/delete/:productId", async (req, res) => {
   console.log("ENTROU NO DELETE DE PRODUCTS.JS");
->>>>>>> Stashed changes
   const productId = req.params.productId;
 
   try {
@@ -101,9 +96,6 @@ router.delete("/delete/:productId", async (req, res) => {
     res.status(500).json({ message: 'Erro ao excluir o produto' });
   }
 });
-<<<<<<< Updated upstream
- 
-=======
 
 //função para chamar a page de editar produto e postar as edições
 
@@ -127,5 +119,4 @@ router.post("/:productId", async (req, res) => {
   }
 });
 
->>>>>>> Stashed changes
 module.exports = router;
