@@ -10,7 +10,7 @@
     <section class="col-md-10">
       <div class="container product-list">
         <div class="product-list-header">
-          <h1>Lista de Produtos</h1>
+          <h1>Lista de Produtos do(a): <%= user.name %></h1>
           <div>
             <a class="btn btn-primary" href="/products/add">Cadastrar Produto</a>
           </div>
@@ -76,6 +76,7 @@
               </div>
             </div>
             <script>
+<<<<<<< Updated upstream
 
               function showAlertEditar(){
                 alert('Não deu prazo de fazer a função de editar :(')
@@ -86,20 +87,28 @@
 
               async function confirmDelete(productId) {
     if (confirm("Tem certeza que deseja excluir este produto? <%= products.id %>")) {
+=======
+async function confirmDelete(productId) {
+    if (confirm("Tem certeza que deseja excluir este produto?")) {
+>>>>>>> Stashed changes
       try {
-        const response = await fetch(`/products/delete/${productId}`, { method: 'POST' });
+        const response = await fetch(`/products/delete/${productId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         const data = await response.json();
 
         alert(data.message);
-        // Recarregar a página ou atualizar a lista de produtos conforme necessário
+        window.location.href = "/products/userProducts";
+
       } catch (error) {
         console.error(error);
         alert('Erro ao excluir o produto');
       }
     }
   }
-              
-
             </script>
           </li>
         <% }); %>

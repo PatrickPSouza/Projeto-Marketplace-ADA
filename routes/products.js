@@ -55,6 +55,7 @@ router.get("/userProducts", async function (req, res, next) {
     category: req.query.category,
     minPrice: req.query.minPrice,
     maxPrice: req.query.maxPrice,
+    user: req.cookies.user,
   });
 });
 
@@ -84,8 +85,13 @@ router.post("/add", async function (req, res, next) {
 
 
 //função para deletar produto
+<<<<<<< Updated upstream
 router.post('/products/delete/:productId', async (req, res) => {
   console.log('ENTROU NO POST DE DELETE EM PRODUCTS.JS')
+=======
+router.delete("/delete/:productId", async (req, res) => {
+  console.log("ENTROU NO DELETE DE PRODUCTS.JS");
+>>>>>>> Stashed changes
   const productId = req.params.productId;
 
   try {
@@ -95,5 +101,31 @@ router.post('/products/delete/:productId', async (req, res) => {
     res.status(500).json({ message: 'Erro ao excluir o produto' });
   }
 });
+<<<<<<< Updated upstream
  
+=======
+
+//função para chamar a page de editar produto e postar as edições
+
+router.get("/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  const product = await productService.getProductById(productId);
+
+  res.render("products/productEdit", { product });
+});
+
+
+router.post("/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  const naoSouReqBody = req.body;
+
+  try {
+    await productService.editProduct(productId, naoSouReqBody);
+    res.redirect("/products/userProducts");
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao editar o produto" });
+  }
+});
+
+>>>>>>> Stashed changes
 module.exports = router;
